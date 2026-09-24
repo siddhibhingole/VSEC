@@ -1,0 +1,253 @@
+# Python Basics: Data Types, Built-in Functions and Math Functions
+
+import math
+
+print("========== PYTHON DATA TYPES AND OPERATIONS ==========\n")
+
+
+# ---------------------------------------------------------
+# 1. INTEGER (int)
+# ---------------------------------------------------------
+a = 20
+b = 6
+
+print("1. INTEGER")
+print("a =", a, "Type:", type(a))
+print("Addition:", a + b)
+print("Subtraction:", a - b)
+print("Multiplication:", a * b)
+print("Division:", a / b)
+print("Floor Division:", a // b)
+print("Modulus:", a % b)
+print("Power:", a ** 2)
+
+print("abs(-20):", abs(-20))
+print("pow(2, 3):", pow(2, 3))
+print("divmod(20, 6):", divmod(20, 6))
+print()
+
+
+# ---------------------------------------------------------
+# 2. FLOAT (float)
+# ---------------------------------------------------------
+x = 12.5
+y = 3.5
+
+print("2. FLOAT")
+print("x =", x, "Type:", type(x))
+print("Addition:", x + y)
+print("Subtraction:", x - y)
+print("Multiplication:", x * y)
+print("Division:", x / y)
+
+print("Round:", round(x, 1))
+print("Ceiling:", math.ceil(x))
+print("Floor:", math.floor(x))
+print("Square root:", math.sqrt(x))
+print()
+
+
+# ---------------------------------------------------------
+# 3. COMPLEX (complex)
+# ---------------------------------------------------------
+c1 = 3 + 4j
+c2 = 2 + 1j
+
+print("3. COMPLEX")
+print("c1 =", c1, "Type:", type(c1))
+print("Addition:", c1 + c2)
+print("Subtraction:", c1 - c2)
+print("Multiplication:", c1 * c2)
+print("Division:", c1 / c2)
+
+print("Real part:", c1.real)
+print("Imaginary part:", c1.imag)
+print("Conjugate:", c1.conjugate())
+print("Magnitude:", abs(c1))
+print()
+
+
+# ---------------------------------------------------------
+# 4. STRING (str)
+# ---------------------------------------------------------
+name = "Python Programming"
+
+print("4. STRING")
+print("String:", name)
+print("Type:", type(name))
+print("Length:", len(name))
+print("Uppercase:", name.upper())
+print("Lowercase:", name.lower())
+print("Replace:", name.replace("Python", "Data"))
+print("First character:", name[0])
+print("Last character:", name[-1])
+print("Slicing:", name[0:6])
+print("Count of 'o':", name.count("o"))
+print("Starts with Python:", name.startswith("Python"))
+print("Ends with Programming:", name.endswith("Programming"))
+print()
+
+
+# ---------------------------------------------------------
+# 5. LIST
+# ---------------------------------------------------------
+numbers = [10, 20, 30, 40, 50]
+
+print("5. LIST")
+print("List:", numbers)
+print("Type:", type(numbers))
+print("Length:", len(numbers))
+print("First element:", numbers[0])
+
+numbers.append(60)
+print("After append:", numbers)
+
+numbers.insert(1, 15)
+print("After insert:", numbers)
+
+numbers.remove(30)
+print("After remove:", numbers)
+
+numbers.sort()
+print("After sort:", numbers)
+
+print("Maximum:", max(numbers))
+print("Minimum:", min(numbers))
+print("Sum:", sum(numbers))
+print()
+
+
+# ---------------------------------------------------------
+# 6. TUPLE
+# ---------------------------------------------------------
+fruits = ("Apple", "Banana", "Mango", "Apple")
+
+print("6. TUPLE")
+print("Tuple:", fruits)
+print("Type:", type(fruits))
+print("Length:", len(fruits))
+print("First element:", fruits[0])
+print("Count of Apple:", fruits.count("Apple"))
+print("Index of Mango:", fruits.index("Mango"))
+print()
+
+
+# ---------------------------------------------------------
+# 7. DICTIONARY
+# ---------------------------------------------------------
+student = {
+    "name": "Shruti",
+    "age": 20,
+    "course": "Python"
+}
+
+print("7. DICTIONARY")
+print("Dictionary:", student)
+print("Type:", type(student))
+print("Name:", student["name"])
+print("Keys:", student.keys())
+print("Values:", student.values())
+print("Items:", student.items())
+
+student["marks"] = 85
+print("After adding marks:", student)
+
+print("Get course:", student.get("course"))
+print()
+
+
+# ---------------------------------------------------------
+# 8. SET
+# ---------------------------------------------------------
+set1 = {10, 20, 30, 40}
+set2 = {30, 40, 50, 60}
+
+print("8. SET")
+print("Set 1:", set1)
+print("Set 2:", set2)
+print("Type:", type(set1))
+
+print("Union:", set1.union(set2))
+print("Intersection:", set1.intersection(set2))
+print("Difference:", set1.difference(set2))
+print("Symmetric Difference:", set1.symmetric_difference(set2))
+
+set1.add(70)
+print("After adding 70:", set1)
+print()
+
+
+# ---------------------------------------------------------
+# 9. FROZENSET
+# ---------------------------------------------------------
+fs = frozenset([10, 20, 30, 40])
+
+print("9. FROZENSET")
+print("Frozen Set:", fs)
+print("Type:", type(fs))
+print("Length:", len(fs))
+print("Maximum:", max(fs))
+print("Minimum:", min(fs))
+print("Sum:", sum(fs))
+
+print("Intersection:", fs.intersection({20, 30, 50}))
+print("Union:", fs.union({50, 60}))
+print()
+
+
+# ---------------------------------------------------------
+# 10. BOOLEAN (bool)
+# ---------------------------------------------------------
+p = True
+q = False
+
+print("10. BOOLEAN")
+print("p =", p, "Type:", type(p))
+print("q =", q, "Type:", type(q))
+
+print("p AND q:", p and q)
+print("p OR q:", p or q)
+print("NOT p:", not p)
+
+print("10 > 5:", 10 > 5)
+print("10 == 5:", 10 == 5)
+print()
+
+
+# ---------------------------------------------------------
+# 11. NONE TYPE
+# ---------------------------------------------------------
+value = None
+
+print("11. NONE TYPE")
+print("Value:", value)
+print("Type:", type(value))
+print("Is None:", value is None)
+print()
+
+
+# ---------------------------------------------------------
+# 12. MATH MODULE FUNCTIONS
+# ---------------------------------------------------------
+print("12. MATH MODULE FUNCTIONS")
+
+num = 25
+
+print("Number:", num)
+print("Square root:", math.sqrt(num))
+print("Power:", math.pow(2, 5))
+print("Ceiling of 5.3:", math.ceil(5.3))
+print("Floor of 5.8:", math.floor(5.8))
+print("Factorial of 5:", math.factorial(5))
+print("Absolute value:", math.fabs(-25))
+print("GCD of 48 and 18:", math.gcd(48, 18))
+print("LCM of 4 and 6:", math.lcm(4, 6))
+
+print("Value of PI:", math.pi)
+print("Value of E:", math.e)
+
+print("sin(90°):", math.sin(math.radians(90)))
+print("cos(0°):", math.cos(math.radians(0)))
+print("tan(45°):", math.tan(math.radians(45)))
+
+print("\n========== PROGRAM COMPLETED ==========")
