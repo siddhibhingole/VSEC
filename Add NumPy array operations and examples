@@ -1,0 +1,103 @@
+# NumPy Array Operations
+import numpy as np
+
+# --------------------------------------------------
+# 1. Creating a 1D NumPy Array using np.array()
+# --------------------------------------------------
+
+arr1 = np.array([10, 20, 30, 40, 50])
+
+print("1D Array:")
+print(arr1)
+
+# Indexing
+print("\nIndexing:")
+print("First element:", arr1[0])
+print("Third element:", arr1[2])
+
+# Slicing
+print("\nSlicing:")
+print("Elements from index 1 to 3:", arr1[1:4])
+print("First three elements:", arr1[:3])
+print("Last two elements:", arr1[-2:])
+
+
+# --------------------------------------------------
+# 2. Creating an Array using np.arange()
+# --------------------------------------------------
+
+arr2 = np.arange(1, 11)
+
+print("\nArray using np.arange():")
+print(arr2)
+
+
+# --------------------------------------------------
+# 3. Creating an Array using np.linspace()
+# --------------------------------------------------
+
+arr3 = np.linspace(0, 10, 6)
+
+print("\nArray using np.linspace():")
+print(arr3)
+
+
+# --------------------------------------------------
+# 4. Creating a 2D NumPy Array
+# --------------------------------------------------
+
+arr2d = np.array([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+])
+
+print("\n2D Array:")
+print(arr2d)
+
+# 2D Indexing
+print("\n2D Indexing:")
+print("Element at row 1, column 2:", arr2d[0, 1])
+print("Element at row 3, column 3:", arr2d[2, 2])
+
+# 2D Slicing
+print("\n2D Slicing:")
+print("First two rows:")
+print(arr2d[:2])
+
+print("\nFirst two columns:")
+print(arr2d[:, :2])
+
+print("\nRows 1-2 and columns 2-3:")
+print(arr2d[:2, 1:])
+
+
+# --------------------------------------------------
+# 5. Reshaping using np.reshape()
+# --------------------------------------------------
+
+arr4 = np.arange(1, 13)
+
+print("\nOriginal 1D Array:")
+print(arr4)
+
+reshaped_arr = np.reshape(arr4, (3, 4))
+
+print("\nReshaped 2D Array (3 x 4):")
+print(reshaped_arr)
+
+
+# --------------------------------------------------
+# 6. Mathematical Functions
+# --------------------------------------------------
+
+print("\nMathematical Functions:")
+
+print("Sum of all elements:", np.sum(arr2d))
+print("Mean of all elements:", np.mean(arr2d))
+
+print("Sum of each row:", np.sum(arr2d, axis=1))
+print("Sum of each column:", np.sum(arr2d, axis=0))
+
+print("Mean of each row:", np.mean(arr2d, axis=1))
+print("Mean of each column:", np.mean(arr2d, axis=0))
