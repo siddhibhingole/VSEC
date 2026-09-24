@@ -1,0 +1,71 @@
+import numpy as np
+
+# Set seed for reproducible results
+np.random.seed(42)
+
+# ---------------------------------------------------
+# 1. Generate random numbers using np.random.rand()
+# ---------------------------------------------------
+random_numbers = np.random.rand(10)
+
+print("Random numbers using np.random.rand():")
+print(random_numbers)
+
+print("\nMean:", np.mean(random_numbers))
+print("Standard Deviation:", np.std(random_numbers))
+
+
+# ---------------------------------------------------
+# 2. Generate standard normal distribution
+#    using np.random.randn()
+# ---------------------------------------------------
+normal_numbers = np.random.randn(10)
+
+print("\nRandom numbers using np.random.randn():")
+print(normal_numbers)
+
+print("\nMean:", np.mean(normal_numbers))
+print("Standard Deviation:", np.std(normal_numbers))
+
+
+# ---------------------------------------------------
+# 3. Generate random integers using np.random.randint()
+# ---------------------------------------------------
+random_integers = np.random.randint(1, 101, size=10)
+
+print("\nRandom integers using np.random.randint():")
+print(random_integers)
+
+print("\nMean:", np.mean(random_integers))
+print("Minimum:", np.min(random_integers))
+print("Maximum:", np.max(random_integers))
+
+
+# ---------------------------------------------------
+# 4. Simulate a normal distribution
+#    using np.random.normal()
+# ---------------------------------------------------
+normal_distribution = np.random.normal(
+    loc=50,       # Mean
+    scale=10,     # Standard deviation
+    size=1000     # Number of values
+)
+
+print("\nFirst 10 values from np.random.normal():")
+print(normal_distribution[:10])
+
+print("\nStatistics of normal distribution:")
+print("Mean:", np.mean(normal_distribution))
+print("Median:", np.median(normal_distribution))
+print("Standard Deviation:", np.std(normal_distribution))
+print("Minimum:", np.min(normal_distribution))
+print("Maximum:", np.max(normal_distribution))
+
+
+# ---------------------------------------------------
+# 5. Calculate percentiles
+# ---------------------------------------------------
+print("\nPercentiles:")
+print("25th Percentile:", np.percentile(normal_distribution, 25))
+print("50th Percentile:", np.percentile(normal_distribution, 50))
+print("75th Percentile:", np.percentile(normal_distribution, 75))
