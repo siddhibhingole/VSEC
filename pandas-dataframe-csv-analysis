@@ -1,0 +1,91 @@
+
+"""
+Pandas Data Handling and CSV Analysis
+
+This project demonstrates how to create Series and DataFrames,
+read data from a CSV file, explore records, calculate statistics,
+and export the results to a new CSV file.
+"""
+
+import pandas as pd
+from pathlib import Path
+
+# Keep project files together in the current working directory
+DATA_FILE = Path("sales_data.csv")
+OUTPUT_FILE = Path("analyzed_sales.csv")
+
+print("=" * 55)
+print("        PANDAS DATA HANDLING AND CSV ANALYSIS")
+print("=" * 55)
+
+# 1. Create a Pandas Series
+# A Series is like a single column of data.
+
+products = pd.Series(["Laptop", "Mouse", "Keyboard", "Monitor"])
+
+print("\n1. Pandas Series")
+print(products)
+
+# 2. Create a DataFrame
+# A DataFrame stores data in rows and columns.
+
+sales = pd.DataFrame({
+    "Product": ["Laptop", "Mouse", "Keyboard", "Monitor", "Webcam"],
+    "Quantity": [5, 20, 12, 7, 15],
+    "Price": [50000, 500, 1200, 10000, 1800],
+    "Region": ["Pune", "Mumbai", "Pune", "Nashik", "Mumbai"]
+})
+
+# Calculate the total sales for each product
+sales["Total_Sales"] = sales["Quantity"] * sales["Price"]
+
+print("\n2. Complete DataFrame")
+print(sales)
+
+# 3. Export the DataFrame to a CSV file
+sales.to_csv(DATA_FILE, index=False)
+print(f"\n3. Data exported to {DATA_FILE}")
+
+# 4. Import data from the CSV file
+df = pd.read_csv(DATA_FILE)
+
+print("\n4. Data imported from CSV successfully!")
+
+# 5. Display the first five rows
+print("\n5. First five rows - df.head()")
+print(df.head())
+
+# 6. Display the last five rows
+print("\n6. Last five rows - df.tail()")
+print(df.tail())
+
+# 7. Display basic statistical information
+print("\n7. Statistical Summary - df.describe()")
+print(df.describe())
+
+# 8. Perform basic DataFrame operations
+print("\n8. Basic DataFrame Operations")
+
+print("\nAvailable columns:")
+print(df.columns.tolist())
+
+print("\nDataset shape (rows, columns):")
+print(df.shape)
+
+print("\nProduct names:")
+print(df["Product"])
+
+print("\nProducts with total sales above 10,000:")
+print(df[df["Total_Sales"] > 10000])
+
+print("\nTotal revenue from all products:")
+print(df["Total_Sales"].sum())
+
+print("\nAverage product price:")
+print(df["Price"].mean())
+
+# 9. Export the analyzed data to another CSV file
+df.to_csv(OUTPUT_FILE, index=False)
+
+print(f"\n9. Analyzed data saved to {OUTPUT_FILE}")
+print("\nAnalysis completed successfully!")
