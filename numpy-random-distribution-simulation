@@ -1,0 +1,63 @@
+
+"""
+Random Number Generation and Distribution Simulation
+
+This program explores how NumPy generates random numbers.
+It simulates different distributions and calculates useful
+statistics such as mean, median, and standard deviation.
+"""
+
+import numpy as np
+
+# Keep results consistent whenever we run the program
+np.random.seed(42)
+
+print("=" * 55)
+print("       RANDOM NUMBER & DISTRIBUTION SIMULATION")
+print("=" * 55)
+
+# 1. Generate random decimal numbers between 0 and 1
+random_decimals = np.random.rand(10)
+
+print("\n1. Random decimal numbers using np.random.rand()")
+print(random_decimals)
+
+# 2. Generate random numbers from a standard normal distribution
+normal_random = np.random.randn(10)
+
+print("\n2. Standard normal numbers using np.random.randn()")
+print(normal_random)
+
+# 3. Generate random integers between 1 and 100
+random_integers = np.random.randint(1, 101, size=10)
+
+print("\n3. Random integers using np.random.randint()")
+print(random_integers)
+
+# 4. Simulate heights using a normal distribution
+# Mean = 165 cm, standard deviation = 7 cm
+heights = np.random.normal(loc=165, scale=7, size=1000)
+
+print("\n4. Normal distribution using np.random.normal()")
+print("First 10 simulated heights:")
+print(np.round(heights[:10], 2))
+
+# 5. Calculate statistics for the simulated heights
+print("\n5. Statistical Analysis")
+print("-" * 35)
+print(f"Mean height:              {np.mean(heights):.2f} cm")
+print(f"Median height:            {np.median(heights):.2f} cm")
+print(f"Standard deviation:       {np.std(heights):.2f} cm")
+print(f"Minimum height:           {np.min(heights):.2f} cm")
+print(f"Maximum height:           {np.max(heights):.2f} cm")
+print(f"Variance:                 {np.var(heights):.2f}")
+
+# 6. Simulate the result of rolling a die 1000 times
+dice_rolls = np.random.randint(1, 7, size=1000)
+
+print("\n6. Dice Roll Simulation")
+for face in range(1, 7):
+    count = np.count_nonzero(dice_rolls == face)
+    print(f"Face {face}: appeared {count} times")
+
+print("\nSimulation completed successfully!")
