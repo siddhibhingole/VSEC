@@ -1,0 +1,214 @@
+
+"""
+Real-World Data Analysis and Visualization
+
+I am using the Titanic passenger dataset to practice data
+analysis with Pandas, Matplotlib, and Seaborn.
+
+The project covers missing-value detection, summary statistics,
+visual analysis, and a correlation heatmap.
+"""
+
+from pathlib import Path
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Create a folder for the output files
+OUTPUT_DIR = Path("outputs")
+OUTPUT_DIR.mkdir(exist_ok=True)
+
+# Set a consistent style for the graphs
+sns.set_theme(style="whitegrid")
+
+print("=" * 60)
+print("       REAL-WORLD DATA ANALYSIS PROJECT")
+print("=" * 60)
+
+# 1. Load the real-world Titanic dataset
+print("\n1. Loading the Titanic dataset...")
+
+df = sns.load_dataset("titanic")
+
+print("\nFirst five rows:")
+print(df.head())
+
+# 2. Understand the dataset
+print("\n2. Dataset Information")
+print("-" * 40)
+print("Number of rows and columns:", df.shape)
+
+print("\nColumn names:")
+print(df.columns.tolist())
+
+print("\nData types:")
+print(df.dtypes)
+
+print("\nDataset information:")
+df.info()
+
+# 3. Calculate summary statistics
+print("\n3. Summary Statistics")
+print("-" * 40)
+print(df.describe().round(2))
+
+# Check survival counts
+print("\nPassenger survival counts:")
+print(df["survived"].value_counts().rename(
+    index={0: "Did not survive", 1: "Survived"}
+))
+
+# 4. Detect missing values
+print("\n4. Missing Values Analysis")
+print("-" * 40)
+
+missing_counts = df.isnull().sum()
+missing_percentage = (missing_counts / len(df)) * 100
+
+missing_summary = pd.DataFrame({
+    "Missing Values": missing_counts,
+    "Missing Percentage": missing_percentage.round(2)
+})
+
+missing_summary = missing_summary.sort_values(
+    by="Missing Values", ascending=False
+)
+
+print(missing_summary[missing_summary["Missing Values"] > 0])
+
+if df.isnull().sum().sum() == 0:
+    print("No missing values found.")
+
+# Save missing-value summary
+missing_summary.to_csv(
+    OUTPUT_DIR / "missing_values_summary.csv"
+)
+
+# 5. Create a clean copy for analysis
+# Fill missing numerical values with their median.
+# Fill missing categorical values with their most common value.
+clean_df = df.copy()
+
+numeric_columns = clean_df.select_dtypes(
+    include="number"
+).columns
+
+categorical_columns = clean_df.select_dtypes(
+    include=["object", "category", "string"]
+).columns
+
+for column in numeric_columns:
+    clean_df[column] = clean_df[column].fillna(
+        clean_df[column].median()
+    )
+
+for column in categorical_columns:
+    if clean_df[column].notna().any():
+        clean_df[column] = clean_df[column].fillna(
+            clean_df[column].mode().iloc[0]
+        )
+
+print("\nMissing values after cleaning:")
+print(clean_df.isnull().sum().sum())
+
+# Save the cleaned dataset
+clean_df.to_csv(
+    OUTPUT_DIR / "cleaned_titanic.csv", index=False
+)
+
+# 6. Analyze survival by passenger class
+print("\n5. Survival Rate by Passenger Class")
+survival_by_class = df.groupby(
+    "pclass", observed=True
+)["survived"].mean() * 100
+
+print(survival_by_class.round(2))
+
+# 7. Create visualizations
+print("\n6. Creating visualizations...")
+
+fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+fig.suptitle(
+    "Titanic Dataset: Statistical Analysis",
+    fontsize=17,
+    fontweight="bold"
+)
+
+# Plot 1: Passenger survival count
+sns.countplot(
+    data=df,
+    x="survived",
+    hue="survived",
+    legend=False,
+    ax=axes[0, 0]
+)
+axes[0, 0].set_title("Passenger Survival Count")
+axes[0, 0].set_xlabel("Survived (0 = No, 1 = Yes)")
+axes[0, 0].set_ylabel("Number of Passengers")
+
+# Plot 2: Age distribution
+sns.histplot(
+    data=df,
+    x="age",
+    bins=25,
+    kde=True,
+    ax=axes[0, 1]
+)
+axes[0, 1].set_title("Distribution of Passenger Ages")
+axes[0, 1].set_xlabel("Age")
+axes[0, 1].set_ylabel("Number of Passengers")
+
+# Plot 3: Survival rate by passenger class
+sns.barplot(
+    data=df,
+    x="pclass",
+    y="survived",
+    hue="pclass",
+    legend=False,
+    errorbar=None,
+    ax=axes[1, 0]
+)
+axes[1, 0].set_title("Survival Rate by Passenger Class")
+axes[1, 0].set_xlabel("Passenger Class")
+axes[1, 0].set_ylabel("Survival Rate (proportion)")
+
+# Plot 4: Correlation heatmap
+# Use numerical columns only to calculate correlations.
+correlation = df.select_dtypes(
+    include="number"
+).corr()
+
+sns.heatmap(
+    correlation,
+    annot=True,
+    fmt=".2f",
+    cmap="coolwarm",
+    center=0,
+    linewidths=0.5,
+    ax=axes[1, 1]
+)
+axes[1, 1].set_title("Numerical Feature Correlation")
+
+plt.tight_layout()
+plt.savefig(
+    OUTPUT_DIR / "titanic_analysis_dashboard.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+plt.show()
+
+# 8. Display the strongest correlations
+print("\n7. Correlation Matrix")
+print(correlation.round(2))
+
+# 9. Final project summary
+print("\n8. Project Summary")
+print("-" * 40)
+print("Total passengers:", len(df))
+print("Total columns:", len(df.columns))
+print("Missing values originally:", int(df.isnull().sum().sum()))
+print("Missing values after cleaning:", int(clean_df.isnull().sum().sum()))
+
+print("\nAnalysis completed successfully!")
+print("Check the outputs folder for CSV files and the dashboard.")
