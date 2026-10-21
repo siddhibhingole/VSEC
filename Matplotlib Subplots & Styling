@@ -1,0 +1,92 @@
+
+"""
+Matplotlib Subplots and Styling
+
+I created this project to learn how multiple graphs can be
+displayed together in one figure. It compares student marks,
+attendance, subject performance, and score distribution.
+"""
+
+import matplotlib.pyplot as plt
+
+# Sample student performance data
+students = ["Aarav", "Priya", "Rohan", "Sneha", "Meera"]
+marks = [75, 92, 68, 85, 95]
+attendance = [80, 96, 72, 88, 98]
+
+subjects = ["Python", "C++", "DBMS", "Maths"]
+subject_marks = [88, 82, 91, 76]
+
+print("Creating a multi-plot student performance dashboard...")
+
+# Create one figure containing four subplots
+plt.figure(figsize=(12, 8))
+
+# Plot 1: Line graph
+plt.subplot(2, 2, 1)
+plt.plot(
+    students, marks,
+    marker="o",
+    linestyle="-",
+    color="blue",
+    label="Student Marks"
+)
+plt.title("Student Marks")
+plt.xlabel("Students")
+plt.ylabel("Marks")
+plt.legend()
+plt.grid(True, linestyle="--", alpha=0.5)
+
+# Plot 2: Bar chart
+plt.subplot(2, 2, 2)
+plt.bar(
+    students, attendance,
+    color="orange",
+    label="Attendance"
+)
+plt.title("Student Attendance")
+plt.xlabel("Students")
+plt.ylabel("Attendance (%)")
+plt.legend()
+plt.grid(axis="y", linestyle=":", alpha=0.6)
+
+# Plot 3: Scatter plot
+plt.subplot(2, 2, 3)
+plt.scatter(
+    attendance, marks,
+    color="green",
+    marker="o",
+    label="Students"
+)
+plt.title("Attendance vs Marks")
+plt.xlabel("Attendance (%)")
+plt.ylabel("Marks")
+plt.legend()
+plt.grid(True, alpha=0.4)
+
+# Plot 4: Subject performance
+plt.subplot(2, 2, 4)
+plt.plot(
+    subjects, subject_marks,
+    marker="s",
+    linestyle="--",
+    color="red",
+    label="Subject Marks"
+)
+plt.title("Subject Performance")
+plt.xlabel("Subjects")
+plt.ylabel("Marks")
+plt.legend()
+plt.grid(True, linestyle="--", alpha=0.5)
+
+# Add a heading and adjust spacing
+plt.suptitle("Student Performance Dashboard", fontsize=16)
+plt.tight_layout()
+
+# Save the complete figure for GitHub
+plt.savefig("student_performance_dashboard.png", dpi=300)
+
+# Display all four plots together
+plt.show()
+
+print("Dashboard created and saved successfully!")
