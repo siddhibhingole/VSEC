@@ -1,0 +1,88 @@
+
+# Pandas Data Cleaning & Data Manipulation
+
+## About the Project
+
+This project is a beginner-friendly introduction to data cleaning
+and manipulation using Python and Pandas.
+
+I created a sample student dataset containing missing marks and
+attendance values. I then cleaned the data, replaced values,
+filtered records, sorted students, and calculated department-wise
+statistics.
+
+## Features
+
+- Detect missing values.
+- Fill missing values using column averages.
+- Remove incomplete rows.
+- Replace existing values.
+- Filter rows based on conditions.
+- Select specific columns.
+- Sort students by marks.
+- Group students by department.
+- Calculate average marks and attendance.
+- Export cleaned data to a CSV file.
+
+## Technologies Used
+
+- Python
+- Pandas
+
+## Installation
+
+Install Pandas:
+
+```bash
+pip install pandas
+```
+
+## How to Run
+
+Clone the repository:
+
+```bash
+git clone https://github.com/YOUR-USERNAME/pandas-data-cleaning.git
+```
+
+Open the project folder:
+
+```bash
+cd pandas-data-cleaning
+```
+
+Run the program:
+
+```bash
+python data_cleaning.py
+```
+
+## Functions Practiced
+
+| Function | Purpose |
+|---|---|
+| `df.isnull()` | Detect missing data |
+| `df.fillna()` | Fill missing values |
+| `df.dropna()` | Remove incomplete records |
+| `df.replace()` | Replace existing values |
+| `df.sort_values()` | Sort records |
+| `df.groupby()` | Group and summarize data |
+
+## What I Learned
+
+- How to identify and handle missing data.
+- How to clean datasets using Pandas.
+- How to filter rows and select columns.
+- How to sort records and group related data.
+- How to generate summaries from real-world-style data.
+- How to export cleaned data to CSV.
+
+## Future Improvements
+
+- Read the dataset from an external CSV file.
+- Add charts using Matplotlib.
+- Build an interactive data-cleaning dashboard.
+
+## Author
+
+Siddhi Bhingole
