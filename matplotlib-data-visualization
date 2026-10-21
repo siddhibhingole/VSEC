@@ -1,0 +1,59 @@
+
+"""
+Data Visualization using Matplotlib
+
+This project explores student performance through graphs.
+I use line plots, bar charts, scatter plots, and histograms
+to understand marks, attendance, and score distribution.
+"""
+
+import matplotlib.pyplot as plt
+
+# Sample data for a small student performance analysis
+students = ["Aarav", "Priya", "Rohan", "Sneha", "Kabir", "Meera"]
+marks = [75, 92, 68, 85, 78, 95]
+attendance = [80, 96, 72, 88, 84, 98]
+
+print("Student Performance Data Visualization")
+print("-" * 40)
+
+# 1. Line plot: Compare marks across students
+plt.figure(figsize=(8, 5))
+plt.plot(students, marks, marker="o", linestyle="-")
+plt.title("Student Marks Comparison")
+plt.xlabel("Student Name")
+plt.ylabel("Marks")
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+# 2. Bar chart: Compare the marks of each student
+plt.figure(figsize=(8, 5))
+plt.bar(students, marks)
+plt.title("Marks Obtained by Students")
+plt.xlabel("Student Name")
+plt.ylabel("Marks")
+plt.tight_layout()
+plt.show()
+
+# 3. Scatter plot: Explore the relationship between
+# attendance and marks
+plt.figure(figsize=(8, 5))
+plt.scatter(attendance, marks)
+plt.title("Attendance vs Marks")
+plt.xlabel("Attendance (%)")
+plt.ylabel("Marks")
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+# 4. Histogram: Understand how marks are distributed
+plt.figure(figsize=(8, 5))
+plt.hist(marks, bins=5, edgecolor="black")
+plt.title("Distribution of Student Marks")
+plt.xlabel("Marks Range")
+plt.ylabel("Number of Students")
+plt.tight_layout()
+plt.show()
+
+print("\nAll four graphs have been generated successfully!")
